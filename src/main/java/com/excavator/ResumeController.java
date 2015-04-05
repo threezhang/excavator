@@ -45,7 +45,7 @@ public class ResumeController {
     @RequestMapping(value = "/send", method = {RequestMethod.POST, RequestMethod.HEAD})
     public String send(@RequestParam("testfile") CommonsMultipartFile file) {
         try {
-            OutputStream os = new FileOutputStream("/Users/three/tmp/"+file.getOriginalFilename());
+            OutputStream os = new FileOutputStream("/etc/tomcat8/temp/"+file.getOriginalFilename());
             InputStream is = file.getInputStream();
             int temp;
             //一个一个字节的读取并写入
@@ -56,12 +56,12 @@ public class ResumeController {
             os.flush();
             os.close();
             is.close();
-            Response res = uploadManager.put("/Users/three/tmp/"+file.getOriginalFilename(), file.getOriginalFilename(), getUpToken0());
+            Response res = uploadManager.put("/etc/tomcat8/temp/"+file.getOriginalFilename(), file.getOriginalFilename(), getUpToken0());
             System.out.println();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "hello";
+        return "resume";
     }
 
 }
